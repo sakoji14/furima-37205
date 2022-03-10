@@ -45,51 +45,50 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column          | Type       | Options                        |
-| ----------------| ------     | -----------                    |
-| nickname        | string     | null: false                    |
-| category        | integer    | null: false                    |
-| quality         | integer    | null: false                    |
-| delivery_charge | integer    | null: false                    |
-| pref            | integer    | null: false                    |
-| date            | integer    | null: false                    |
-| fee             | integer    | null: false                    |
-| message         | text       | null: false                    |
-| user            | references | null: false, foreign_key: true |
+| Column            | Type       | Options                        |
+| ----------------  | ------     | -----------                    |
+| nickname          | string     | null: false                    |
+| category_id       | integer    | null: false                    |
+| quality_id        | integer    | null: false                    |
+| delivery_charge_id| integer    | null: false                    |
+| pref_id           | integer    | null: false                    |
+| shipping_date_id  | integer    | null: false                    |
+| fee               | integer    | null: false                    |
+| message           | text       | null: false                    |
+| user              | references | null: false, foreign_key: true |
 
 
 - has_many  :comments
 - belong_to :user
 - has_one   :purchase
-- has_one   :address
 - belongs_to_active_hash :category
 - belongs_to_active_hash :quality
 - belongs_to_active_hash :delivery_charge
-- belongs_to_active_hash :region
-- belongs_to_active_hash :date
+- belongs_to_active_hash :pref
+- belongs_to_active_hash :shipping_date
 
 ##  purchases テーブル
 
 | Column           | Type       | Options                        |
 | ---------------- | -----------| ------------------------------ |
-| users            | references | null: false, foreign_key: true |
-| items            | references | null: false, foreign_key: true |
+| user             | references | null: false, foreign_key: true |
+| item             | references | null: false, foreign_key: true |
 
 - belongs_to :user
 - belongs_to :item
+- has_one   :address
 
 ##  addresses テーブル
 
 | Column      | Type       | Options      |
 | ----------- | ---------- | -------------|
-| post_number | integer    |  null: false |
-| pref        | integer    |  null: false |
+| post_number | string     |  null: false |
+| pref_id     | integer    |  null: false |
 | city        | string     |  null: false |
 | mail        | string     |  null: false |
-| build       | string     |              |
-| tell        | integer    |  null: false |
+| build       | string     |  null: false |
+| tell        | string     |  null: false |
 
-- belongs_to :item
 - belongs_to :purchase
 - has_one_active_hash :pref
 
@@ -98,8 +97,8 @@ Things you may want to cover:
 | Column  | Type        | Options                        |
 | -------- | ---------- | ------------------------------ |
 | comment  | text       | null: false                    |
-| users    | references | null: false, foreign_key: true |
-| items    | references | null: false, foreign_key: true |
+| user     | references | null: false, foreign_key: true |
+| item     | references | null: false, foreign_key: true |
 
 - belongs_to :item
 - belongs_to :user
