@@ -27,16 +27,16 @@ Things you may want to cover:
 
 ## users テーブル
 
-| Column             | Type    | Options     |
-| ------------------ | ------- | ----------- |
-| nickname           | string  | null: false |
-| email              | string  | null: false |
-| encrypted_password | string  | null: false |
-| birthday           | date    | null: false |
-| first_name         | string  | null: false |
-| second_name        | string  | null: false |
-| first_name_kana    | string  | null: false |
-| second_name_kana   | string  | null: false |
+| Column             | Type    | Options                   |
+| ------------------ | ------- | ------------------------- |
+| nickname           | string  | null: false               |
+| email              | string  | null: false, unique: true |
+| encrypted_password | string  | null: false               |
+| birthday           | date    | null: false               |
+| first_name         | string  | null: false               |
+| second_name        | string  | null: false               |
+| first_name_kana    | string  | null: false               |
+| second_name_kana   | string  | null: false               |
 
 
 - has_many :items
@@ -80,14 +80,16 @@ Things you may want to cover:
 
 ##  addresses テーブル
 
-| Column      | Type       | Options      |
-| ----------- | ---------- | -------------|
-| post_number | string     |  null: false |
-| pref_id     | integer    |  null: false |
-| city        | string     |  null: false |
-| mail        | string     |  null: false |
-| build       | string     |  null: false |
-| tell        | string     |  null: false |
+| Column      | Type       | Options                         |
+| ----------- | ---------- | --------------------------------|
+| post_number | string     |  null: false                    |
+| pref_id     | integer    |  null: false                    |
+| city        | string     |  null: false                    |
+| mail        | string     |  null: false                    |
+| build       | string     |                                 |
+| tell        | string     |  null: false                    |
+| purchase    | reference  |  null: false, foreign_key: true |
+
 
 - belongs_to :purchase
 - has_one_active_hash :pref
