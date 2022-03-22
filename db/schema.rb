@@ -33,9 +33,25 @@ ActiveRecord::Schema.define(version: 2022_03_19_060830) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+  create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "genre_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "nickname", null: false
+    t.integer "category_id", null: false
+    t.integer "quality_id", null: false
+    t.integer "delivery_charge_id", null: false
+    t.integer "pref_id", null: false
+    t.integer "shipping_date_id", null: false
+    t.integer "fee", null: false
+    t.text "message", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_items_on_user_id"
   end
 
   create_table "purchases", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -62,4 +78,5 @@ ActiveRecord::Schema.define(version: 2022_03_19_060830) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "items", "users"
 end
