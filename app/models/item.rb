@@ -12,14 +12,18 @@ class Item < ApplicationRecord
  
   has_one_attached :image
 
-  validates :category_id, numericality: {other_than: 1 }
-  validates :quality_id, numericality: {other_than: 1 }
-  validates :delivery_charge_id, numericality: {other_than: 1 }
-  validates :pref_id, numericality: {other_than: 1 }
-  validates :shipping_date_id, numericality: {other_than: 1 }
-  validates :nickname, presence: true
-  validates :message, presence: true
-  validates :image, presence: true
+  options numericality: {other_than: 1 } do
+    validates :category_id
+    validates :quality_id
+    validates :delivery_charge_id
+    validates :pref_id
+    validates :shipping_date_id
+  end
+  options2 presence: true do
+    validates :nickname
+    validates :message
+    validates :image
+  end
   validates :fee, presence: true, numericality:{only_integer:true,greater_than_or_equal_to:300,less_than_or_equal_to:9999999}
 
 
