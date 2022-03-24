@@ -27,30 +27,30 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Message can't be blank")
       end
-      it 'category_idが空では登録できない' do
-        @item.category_id = ''
+      it 'category_idが未選択の場合は登録できない' do
+        @item.category_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category is not a number")
+        expect(@item.errors.full_messages).to include("Category must be other than 1")
       end
-      it 'quality_idが空では登録できない' do
-        @item.quality_id = ''
+      it 'quality_idが未選択の場合は登録できない' do
+        @item.quality_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Quality is not a number")
+        expect(@item.errors.full_messages).to include("Quality must be other than 1")
       end
-      it 'delivery_charge_idが空では登録できない' do
-        @item.delivery_charge_id = ''
+      it 'delivery_charge_idが未選択の場合は登録できない' do
+        @item.delivery_charge_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Delivery charge is not a number")
+        expect(@item.errors.full_messages).to include("Delivery charge must be other than 1")
       end
-      it 'pref_idが空では登録できない' do
-        @item.pref_id = ''
+      it 'pref_idが未選択の場合は登録できない' do
+        @item.pref_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Pref is not a number",)
+        expect(@item.errors.full_messages).to include("Pref must be other than 1",)
       end
-      it 'shipping_date_idが空では登録できない' do
-        @item.shipping_date_id = ''
+      it 'shipping_date_idが未選択の場合は登録できない' do
+        @item.shipping_date_id = '1'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipping date is not a number")
+        expect(@item.errors.full_messages).to include("Shipping date must be other than 1")
       end
       it 'feeが空では登録できない' do
         @item.fee = ''
@@ -71,6 +71,11 @@ RSpec.describe Item, type: :model do
         @item.fee = 'あｱ３'
         @item.valid?
         expect(@item.errors.full_messages).to include("Fee is not a number")
+      end
+      it 'ユーザーが紐付いていない場合登録できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end
