@@ -12,14 +12,14 @@ class Item < ApplicationRecord
  
   has_one_attached :image
 
-  options numericality: {other_than: 1 } do
+  with_options numericality: {other_than: 1 } do
     validates :category_id
     validates :quality_id
     validates :delivery_charge_id
     validates :pref_id
     validates :shipping_date_id
   end
-  options2 presence: true do
+  with_options presence: true do
     validates :nickname
     validates :message
     validates :image
