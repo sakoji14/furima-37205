@@ -18,10 +18,10 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    item.destroy
-    unless user_signed_in?
+    if @item.user == current_user
       redirect_to root_path
     end
+    item.destroy
   end
 
   def create
