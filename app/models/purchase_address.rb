@@ -8,6 +8,8 @@ class PurchaseAddress
     validates :tell, format: {with: /\A\d{10,11}\z/}
     validates :token
     validates :post_number, format: {with: /\A[0-9]{3}-[0-9]{4}\z/}
+    validates :item_id
+    validates :user_id
   end
   validates :pref_id, numericality: {other_than: 1}
 

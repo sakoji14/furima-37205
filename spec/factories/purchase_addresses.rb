@@ -6,5 +6,8 @@ FactoryBot.define do
     mail { '中央区2-2' }
     tell { '08012345678' }
     token {"tok_abcdefghijk00000000000000000"}
+    build {'タワー111'}
+    user_id {"2"}
+    item_id {"2"}
   end
 end
