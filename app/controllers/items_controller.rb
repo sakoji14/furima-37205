@@ -19,11 +19,11 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
+    @item = Item.find(params[:id])
     if @item.user == current_user
       redirect_to root_path
     end
-    item.destroy
+    @item.destroy
   end
 
   def create
